@@ -97,15 +97,16 @@ Independent_t_test <- function (exp_var, out_var, data, ...) {
 <p>
 For this function to work effectively, a single qualitative variable
 with two levels is required for the exp_var and a single quantitative
-variable is required for the out_var. If required, the data needs to be
-adjusted accordingly. If the levels are numeric in the qualitative
-explanatory variable, Levene’s test and Bartlett’s test will not work
-and the function will produce the following error message “Sorry, you
-need to ensure your quantitative variable is numeric. The currently
-entered outcome variable is a” class(). Once the function is placed into
-a package, more guidance can be provided regarding the use. Perhaps the
-inputs can even be adjusted to change the confidence and the type of
-hypothesis test (one sided versus two sided).
+variable is required for the out_var. If use of the function is
+required, the data can be adjusted accordingly. If the levels are
+numeric in the qualitative explanatory variable, Levene’s test and
+Bartlett’s test will not work and the function will produce the
+following error message “Sorry, you need to ensure your qualitative
+variable is a factor. The currently entered explanatory variable is a”
+class(exp_var). Once the function is placed into a package, more
+guidance can be provided regarding it’s use. Perhaps the inputs can even
+be adjusted to change the confidence and the type of hypothesis test
+(one sided versus two sided).
 </p>
 
 @examples
@@ -162,4 +163,4 @@ test_that("Testing Indepenedent t-test function design",{
 })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 🎊
