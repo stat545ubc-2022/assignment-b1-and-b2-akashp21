@@ -8,10 +8,11 @@ Assignment B1 folder: Making a function
 
 2.  What files are in this folder?
 
-    *There are currently* ***2*** *files in this folder*
+    *There are currently* ***3*** *files in this folder*
 
          - README.md
          - Independent-t-test-function.md
+         - Independent-t-test-function.Rmd
 
 3.  How do you use this folder?
 
