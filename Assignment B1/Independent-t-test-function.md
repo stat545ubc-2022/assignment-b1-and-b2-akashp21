@@ -15,12 +15,13 @@ suppressPackageStartupMessages(library(datateachr)) # data sets
 suppressPackageStartupMessages(library(digest)) # digesting output
 ```
 
-@description The function conducts an independent 2 sample t-test on the
-data of interest. It will determine whether the independent t-test
-requires the use of equal variances or unequal variances based on the
-outcome of Levene’s and Bartlett’s tests at a significance level of
-0.05. The t-test conducted also uses a significance level of 0.05, since
-this is the level of significance commonly used.
+(Exercise 2) @description The function conducts an independent 2 sample
+t-test on the data of interest. It will determine whether the
+independent t-test requires the use of equal variances or unequal
+variances based on the outcome of Levene’s and Bartlett’s tests at a
+significance level of 0.05. The t-test conducted also uses a
+significance level of 0.05, since this is the level of significance
+commonly used.
 
 @param exp_var Qualitative explanatory variable (The use of exp_var
 should be appropriate in this instance since it is referring to the
@@ -69,7 +70,7 @@ Smoking_effect_2 <- Smoking_effect %>%
                            levels = c("No", "Yes", "Unknown"))) # ordering levels
 ```
 
-Function
+Function (Exercise 1)
 
 ``` r
 Independent_t_test <- function (exp_var, out_var, data, ...) {
@@ -109,7 +110,7 @@ be adjusted to change the confidence and the type of hypothesis test
 (one sided versus two sided).
 </p>
 
-@examples
+@examples (Exercise 3)
 
 ``` r
 Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2) # should be 0.7097405
@@ -147,20 +148,50 @@ Independent_t_test(apt$exterior_fire_escape, apt$no_of_storeys, apt) # should be
 
     ## [1] 4.225185e-10
 
-@Tests
+@Tests (Exercise 4)
 
 ``` r
 Caesarean_vs_FEV <- digest(Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2)) # digesting the Independent_t_test input
 Diagnosis_vs_perimeter_mean <- digest(Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample)) # digesting the Independent_t_test input
 Exterior_fire_escape_vs_no_of_storeys <- digest(Independent_t_test(apt$balconies, apt$no_of_storeys, apt)) # digesting the Independent_t_test input
+```
 
+``` r
 test_that("Testing Indepenedent t-test function design",{ 
-          expect_equal(Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample), 4.058636e-25) # expect_equal test comparing values
-          expect_equal(digest(Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2)), Caesarean_vs_FEV) # expect_equal test comparing digested input
-          expect_equal(digest(Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample)), Diagnosis_vs_perimeter_mean) # expect_equal test comparing digested input
-          expect_equal(digest(Independent_t_test(apt$balconies, apt$no_of_storeys, apt)), Exterior_fire_escape_vs_no_of_storeys) # expect_equal test comparing digested input
+          expect_equal(Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample), 4.058636e-25)
+  }) # expect_equal test comparing values
+```
+
+    ## Test passed 🥇
+
+``` r
+test_that("Testing Indepenedent t-test function design",{ 
+          expect_equal(digest(Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2)), Caesarean_vs_FEV)
+  }) # expect_equal test comparing digested input
+```
+
+    ## Test passed 😸
+
+``` r
+test_that("Testing Indepenedent t-test function design",{ 
+          expect_equal(digest(Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample)), Diagnosis_vs_perimeter_mean)
+}) # expect_equal test comparing digested input
+```
+
+    ## Test passed 😀
+
+``` r
+test_that("Testing Indepenedent t-test function design",{
+          expect_equal(digest(Independent_t_test(apt$balconies, apt$no_of_storeys, apt)), Exterior_fire_escape_vs_no_of_storeys)
+})# expect_equal test comparing digested input
+```
+
+    ## Test passed 🎊
+
+``` r
+test_that("Testing Indepenedent t-test function design",{
           expect_error(Independent_t_test(park$credit_card, park$r_mf_9a_6p, park), "Sorry, you need to ensure your quantitative variable is numeric. The currently entered outcome variable is a character") # expect_error test comparing the input error to the predicted error
 })
 ```
 
-    ## Test passed 😀
+    ## Test passed 🌈
