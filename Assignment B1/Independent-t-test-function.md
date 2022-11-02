@@ -163,4 +163,4 @@ test_that("Testing Indepenedent t-test function design",{
 })
 ```
 
-    ## Test passed 🎊
+    ## Test passed 😀
