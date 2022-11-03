@@ -4,6 +4,12 @@ output: github_document
 ---
 # Independent 2 Sample T-Test Function
 
+# Table of contents
+1. [Exercise 1 - Function creation](#Exercise 1)
+2. [Exercise 2 - Documenting the function](#Exercise 2)
+3. [Exercise 3 - Examples](#Exercise 3)
+4. [Exercise 4 - Testing the function](#Exercise 4)
+
 ```{r}
 suppressPackageStartupMessages(library(dplyr)) # data manipulation
 suppressPackageStartupMessages(library(testthat)) # testing
@@ -16,17 +22,19 @@ suppressPackageStartupMessages(library(datateachr)) # data sets
 suppressPackageStartupMessages(library(digest)) # digesting output
 ```
 
+<a name="Exercise 2"></a>
 (Exercise 2)
 @description The function conducts an independent 2 sample t-test on the data of interest. It will determine whether the independent t-test requires the use 
 of equal variances or unequal variances based on the outcome of Levene's and Bartlett's tests at a significance level of 0.05. The t-test conducted also uses 
-a significance level of 0.05, since this is the level of significance commonly used.  
+a standard significance level of 0.05, since this is the level of significance commonly used. However, this can be adjusted in the function call by specifying
+the conf.level and the alt. 
 
 @param exp_var Qualitative explanatory variable (The use of exp_var should be appropriate in this instance since it is referring to the explanatory variable)  
 @param out_var Quantitative outcome variable (The use of out_var should be appropriate in this instance since it is referring to the outcome variable)
 @param data The data of interest (The use of data should be appropriate in this instance since it is referring to the data)
-@param ... Other parameters to pass to \code{t.test()} 
+@param ... Other parameters to pass to \code{t.test()}, such as conf.level (between 0-1) and alt ("two.sided", "less", "greater") 
 
-@return p-value an independent 2-sample t-test based on the method used. 
+@return p-value of an independent 2-sample t-test based on the equality or inequality of variance in the method 
 @export 
 
 Data to test
@@ -53,7 +61,7 @@ Smoking_effect_2 <- Smoking_effect %>%
 ```
 
 
-
+<a name="Exercise 1"></a>
 Function (Exercise 1)
 ```{r}
 Independent_t_test <- function (exp_var, out_var, data, ...) {
@@ -66,30 +74,33 @@ Independent_t_test <- function (exp_var, out_var, data, ...) {
   }
   car::leveneTest(out_var ~ exp_var, data) # Levene's test
   bartlett.test(out_var ~ exp_var, data) # Bartlett's test
-  if (c(bartlett.test(out_var ~ exp_var, data, ...)$p.value < 0.05, car::leveneTest(out_var ~ exp_var, data)$p.value < 0.05)){
+  if (c(bartlett.test(out_var ~ exp_var, data)$p.value < 0.05, car::leveneTest(out_var ~ exp_var, data)$p.value < 0.05)){
     model <- t.test(out_var ~ exp_var, data, paired=FALSE, 
-                    var.eq= FALSE, conf.level=0.95, alt="two.sided") # t-test for unequal variance at a confidence level of 0.95
+                    var.eq= FALSE, ...) # t-test for unequal variance at a confidence level of 0.95
   }
   else {model <- t.test(out_var ~ exp_var, data, paired=FALSE, 
-               var.eq= TRUE, conf.level=0.95, alt="two.sided")  # t-test for equal variance at a confidence level of 0.95
+               var.eq= TRUE, ...)  # t-test for equal variance at a confidence level of 0.95
   }
   tidy_model <- broom::tidy(model) # cleaning up the output
   return(tidy_model$p.value) # returning only the p-value
 }
 ```
 
-<p>For this function to work effectively, a single qualitative variable with two levels is required for the exp_var and a single quantitative variable is required for the out_var. If use of the function is required, the data can be adjusted accordingly. If the levels are numeric in the qualitative explanatory variable, Levene's test and Bartlett's test will not work and the function will produce the following error message "Sorry, you need to ensure your qualitative variable is a factor. The currently entered explanatory variable is a " class(exp_var). Once the function is placed into a package, more guidance can be provided regarding it's use. Perhaps the inputs can even be adjusted to change the confidence and the type of hypothesis test (one sided versus two sided).</p>
+<p>For this function to work effectively, a single qualitative variable with two levels is required for the exp_var and a single quantitative variable is required for the out_var. If use of the function is required, the data can be adjusted accordingly. If the levels are numeric in the qualitative explanatory variable, Levene's test and Bartlett's test will not work and the function will produce the following error message "Sorry, you need to ensure your qualitative variable is a factor. The currently entered explanatory variable is a " class(exp_var). Once the function is placed into a package, more guidance can be provided regarding it's use. The function created can also have inputs that are t-test specific. For instance, the confidence level and type of test can be specified. Though, the default for this function is a conf.level of 0.95 and an alt of "two.sided".</p>
 
+<a name="Exercise 3"></a>
 @examples (Exercise 3)
 ```{r}
-Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2) # should be 0.7097405
-Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample) # should be 1.023141e-66
-Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample) # should be 4.058636e-25
-Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$concavity_mean, Cancer_sample) # should be 3.742121e-58
+Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2, conf.level=0.95, alt="two.sided") # should be 0.7097405
+Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2, conf.level=0.975, alt="greater") # should be 0.6451297
+Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample, conf.level=0.99, alt="less") # should be 5.115705e-67
+Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample, conf.level=0.95, alt="less") # should be 2.029318e-25
+Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$concavity_mean, Cancer_sample, conf.level=0.95, alt="two.sided") # should be 3.742121e-58
 Independent_t_test(apt$balconies, apt$no_of_storeys, apt) # should be 3.968512e-135
 Independent_t_test(apt$exterior_fire_escape, apt$no_of_storeys, apt) # should be 4.225185e-10
 ```
 
+<a name="Exercise 4"></a>
 @Tests (Exercise 4)
 ```{r}
 Caesarean_vs_FEV <- digest(Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2)) # digesting the Independent_t_test input
@@ -100,25 +111,25 @@ Exterior_fire_escape_vs_no_of_storeys <- digest(Independent_t_test(apt$balconies
 ```{r}
 test_that("Testing Indepenedent t-test function design",{ 
           expect_equal(Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample), 4.058636e-25)
-  }) # expect_equal test comparing values
+  }) # expect_equal test comparing the input of Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample) to the digested input
 ```
 
 ```{r}
 test_that("Testing Indepenedent t-test function design",{ 
           expect_equal(digest(Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2)), Caesarean_vs_FEV)
-  }) # expect_equal test comparing digested input
+  }) # expect_equal test comparing the input of Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2) to the digested input
 ```
 
 ```{r}
 test_that("Testing Indepenedent t-test function design",{ 
           expect_equal(digest(Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample)), Diagnosis_vs_perimeter_mean)
-}) # expect_equal test comparing digested input
+}) # expect_equal test comparing the input of Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample) to the digested input
 ```
 
 ```{r}
 test_that("Testing Indepenedent t-test function design",{
           expect_equal(digest(Independent_t_test(apt$balconies, apt$no_of_storeys, apt)), Exterior_fire_escape_vs_no_of_storeys)
-})# expect_equal test comparing digested input
+})# expect_equal test comparing the input of Independent_t_test(apt$balconies, apt$no_of_storeys, apt) to the digested input
 ```
 
 ```{r}
