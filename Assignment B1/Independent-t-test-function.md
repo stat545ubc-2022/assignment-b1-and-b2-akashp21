@@ -22,7 +22,9 @@ suppressPackageStartupMessages(library(datateachr)) # data sets
 suppressPackageStartupMessages(library(digest)) # digesting output
 ```
 
-<a name="Exercise 2"></a> (Exercise 2) @description The function
+<a name="Exercise 2"></a>
+
+(Exercise 2) @description The function
 conducts an independent 2 sample t-test on the data of interest. It will
 determine whether the independent t-test requires the use of equal
 variances or unequal variances based on the outcome of Levene’s and
@@ -79,7 +81,9 @@ Smoking_effect_2 <- Smoking_effect %>%
                            levels = c("No", "Yes", "Unknown"))) # ordering levels
 ```
 
-<a name="Exercise 1"></a> Function (Exercise 1)
+<a name="Exercise 1"></a> 
+
+Function (Exercise 1)
 
 ``` r
 Independent_t_test <- function (exp_var, out_var, data, ...) {
@@ -120,7 +124,9 @@ level and type of test can be specified. Though, the default for this
 function is a conf.level of 0.95 and an alt of “two.sided”.
 </p>
 
-<a name="Exercise 3"></a> @examples (Exercise 3)
+<a name="Exercise 3"></a> 
+
+@examples (Exercise 3)
 
 ``` r
 Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2, conf.level=0.95, alt="two.sided") # should be 0.7097405
@@ -164,7 +170,9 @@ Independent_t_test(apt$exterior_fire_escape, apt$no_of_storeys, apt) # should be
 
     ## [1] 4.225185e-10
 
-<a name="Exercise 4"></a> @Tests (Exercise 4)
+<a name="Exercise 4"></a> 
+
+@Tests (Exercise 4)
 
 ``` r
 Caesarean_vs_FEV <- digest(Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2)) # digesting the Independent_t_test input
