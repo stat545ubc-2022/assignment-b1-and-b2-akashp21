@@ -24,7 +24,6 @@ suppressPackageStartupMessages(library(digest)) # digesting output
 
 <a name="Exercise 2"></a>
 
-<<<<<<< HEAD
 (Exercise 2) @description The function conducts an independent 2 sample
 t-test on the data of interest. It will determine whether the
 independent t-test requires the use of equal variances or unequal
@@ -33,16 +32,6 @@ significance level of 0.05. The t-test conducted also uses a standard
 significance level of 0.05, since this is the level of significance
 commonly used. However, this can be adjusted in the function call by
 specifying the conf.level and the alt.
-=======
-(Exercise 2) @description The function
-conducts an independent 2 sample t-test on the data of interest. It will
-determine whether the independent t-test requires the use of equal
-variances or unequal variances based on the outcome of Levene’s and
-Bartlett’s tests at a significance level of 0.05. The t-test conducted
-also uses a standard significance level of 0.05, since this is the level
-of significance commonly used. However, this can be adjusted in the
-function call by specifying the conf.level and the alt.
->>>>>>> a220cb4898813d296544a3400f23a72c1be9880b
 
 @param exp_var Qualitative explanatory variable (The use of exp_var
 should be appropriate in this instance since it is referring to the
@@ -92,11 +81,7 @@ Smoking_effect_2 <- Smoking_effect %>%
                            levels = c("No", "Yes", "Unknown"))) # ordering levels
 ```
 
-<<<<<<< HEAD
 <a name="Exercise 1"></a>
-=======
-<a name="Exercise 1"></a> 
->>>>>>> a220cb4898813d296544a3400f23a72c1be9880b
 
 Function (Exercise 1)
 
@@ -139,11 +124,7 @@ level and type of test can be specified. Though, the default for this
 function is a conf.level of 0.95 and an alt of “two.sided”.
 </p>
 
-<<<<<<< HEAD
 <a name="Exercise 3"></a>
-=======
-<a name="Exercise 3"></a> 
->>>>>>> a220cb4898813d296544a3400f23a72c1be9880b
 
 @examples (Exercise 3)
 
@@ -189,11 +170,7 @@ Independent_t_test(apt$exterior_fire_escape, apt$no_of_storeys, apt) # should be
 
     ## [1] 4.225185e-10
 
-<<<<<<< HEAD
 <a name="Exercise 4"></a>
-=======
-<a name="Exercise 4"></a> 
->>>>>>> a220cb4898813d296544a3400f23a72c1be9880b
 
 @Tests (Exercise 4)
 
@@ -209,7 +186,7 @@ test_that("Testing Indepenedent t-test function design",{
   }) # expect_equal test comparing the input of Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample) to the digested input
 ```
 
-    ## Test passed 😸
+    ## Test passed 🎊
 
 ``` r
 test_that("Testing Indepenedent t-test function design",{ 
@@ -225,11 +202,7 @@ test_that("Testing Indepenedent t-test function design",{
 }) # expect_equal test comparing the input of Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$perimeter_mean, Cancer_sample) to the digested input
 ```
 
-<<<<<<< HEAD
-    ## Test passed 🥳
-=======
-    ## Test passed 🎉
->>>>>>> a220cb4898813d296544a3400f23a72c1be9880b
+    ## Test passed 😸
 
 ``` r
 test_that("Testing Indepenedent t-test function design",{
@@ -237,7 +210,7 @@ test_that("Testing Indepenedent t-test function design",{
 })# expect_equal test comparing the input of Independent_t_test(apt$balconies, apt$no_of_storeys, apt) to the digested input
 ```
 
-    ## Test passed 🌈
+    ## Test passed 🎊
 
 ``` r
 test_that("Testing Indepenedent t-test function design",{
@@ -245,8 +218,4 @@ test_that("Testing Indepenedent t-test function design",{
 })
 ```
 
-<<<<<<< HEAD
-    ## Test passed 😀
-=======
-    ## Test passed 🎉
->>>>>>> a220cb4898813d296544a3400f23a72c1be9880b
+    ## Test passed 🌈
