@@ -142,6 +142,23 @@ Vanco_SS_dose_calculator(25.0, 43.0, 1000, 8, 1, 1.5, 1, 35, 17.5) # Should be "
     ## [7] "and a trough value of"                 
     ## [8] "16.6211709853472"
 
+``` r
+Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) # Should be "This function recommends a new dose of", 1500, 750,"given over Q",8,8,"h",". This will produce a peak of", 33.5, 32.25,"and a trough value of", 21.5794478677179, 16.6211709853472
+```
+
+    ##  [1] "This function recommends a new dose of"
+    ##  [2] "1500"                                  
+    ##  [3] "750"                                   
+    ##  [4] "given over Q"                          
+    ##  [5] "8"                                     
+    ##  [6] "8"                                     
+    ##  [7] "h. This will produce a peak of"        
+    ##  [8] "33.5"                                  
+    ##  [9] "32.25"                                 
+    ## [10] "and a trough value of"                 
+    ## [11] "21.5794478677179"                      
+    ## [12] "16.6211709853472"
+
 <a name="Exercise 4"></a>
 
 @Tests (Exercise 4)
@@ -166,7 +183,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
   }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) to the digested input
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🥇
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{ 
@@ -174,7 +191,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(25.0, 43.0, 1000, 8, 1, 1.5, 1, 35, 17.5) to the digested input
 ```
 
-    ## Test passed 🌈
+    ## Test passed 😀
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{
@@ -182,4 +199,4 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 })
 ```
 
-    ## Test passed 🌈
+    ## Test passed 🥳
