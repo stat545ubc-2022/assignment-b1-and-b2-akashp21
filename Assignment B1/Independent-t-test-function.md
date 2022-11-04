@@ -186,7 +186,7 @@ test_that("Testing Indepenedent t-test function design",{
   }) # expect_equal test comparing the input of Independent_t_test(Cancer_sample$diagnosis, Cancer_sample$texture_mean, Cancer_sample) to the digested input
 ```
 
-    ## Test passed 🎊
+    ## Test passed 😸
 
 ``` r
 test_that("Testing Indepenedent t-test function design",{ 
@@ -194,7 +194,7 @@ test_that("Testing Indepenedent t-test function design",{
   }) # expect_equal test comparing the input of Independent_t_test(Smoking_effect_2$Caesarean, Smoking_effect_2$FEV, Smoking_effect_2) to the digested input
 ```
 
-    ## Test passed 🎉
+    ## Test passed 😀
 
 ``` r
 test_that("Testing Indepenedent t-test function design",{ 
@@ -210,7 +210,7 @@ test_that("Testing Indepenedent t-test function design",{
 })# expect_equal test comparing the input of Independent_t_test(apt$balconies, apt$no_of_storeys, apt) to the digested input
 ```
 
-    ## Test passed 🎊
+    ## Test passed 🥇
 
 ``` r
 test_that("Testing Indepenedent t-test function design",{
