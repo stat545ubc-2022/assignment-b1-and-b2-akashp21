@@ -203,11 +203,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
   }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) to the digested input
 ```
 
-<<<<<<< HEAD
     ## Test passed 😀
-=======
-    ## Test passed 🌈
->>>>>>> 462d2795a8bc78c5451ed1d4b0c3f3cdaac642e4
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{ 
@@ -215,11 +211,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) to the digested input
 ```
 
-<<<<<<< HEAD
     ## Test passed 🌈
-=======
-    ## Test passed 🎊
->>>>>>> 462d2795a8bc78c5451ed1d4b0c3f3cdaac642e4
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{
@@ -227,8 +219,4 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 })
 ```
 
-<<<<<<< HEAD
     ## Test passed 😸
-=======
-    ## Test passed 😀
->>>>>>> 462d2795a8bc78c5451ed1d4b0c3f3cdaac642e4
