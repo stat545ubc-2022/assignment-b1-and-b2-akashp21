@@ -5,10 +5,10 @@ STAT 545B Assignment B1
 
 # Table of contents
 
-1.  [Exercise 1 - Function creation](#Exercise%201)
-2.  [Exercise 2 - Documenting the function](#Exercise%202)
-3.  [Exercise 3 - Examples](#Exercise%203)
-4.  [Exercise 4 - Testing the function](#Exercise%204)
+1.  [Exercise 1 and 2 - Function creation and Documenting the
+    function](#Exercise%201%20and%202)
+2.  [Exercise 3 - Examples](#Exercise%203)
+3.  [Exercise 4 - Testing the function](#Exercise%204)
 
 ``` r
 suppressPackageStartupMessages(library(dplyr)) # data manipulation
@@ -22,42 +22,32 @@ suppressPackageStartupMessages(library(digest)) # digesting output
 suppressPackageStartupMessages(library(devtools)) # devtools package
 ```
 
-<a name="Exercise 2"></a>
+<a name="Exercise 1 and 2"></a>
 
-(Exercise 2) @description The function calculates a new dosing regimen
-for patients receiving Vancomycin using the Sawchuk-Zaske calculation
-strategy. This strategy determines the elimination rate constant(k), the
-half-life(t1/2), the volume of distribution (Vd), the new dosing
-interval (tau), the new dosing rate recommendation (k0), the expected
-peak level (C 1h), and the expected trough level (C tr). Any relevant
-equations can be found online or by viewing the equations in the
-function. Two or three serum concentrations are needed, along with the
-assumption that the patient is at steady-state (receiving their 4th or
-5th dose depending on the half-life of the drug). Using the patient
-parameters, individualized dosing regimens can be created to achieve
-ideal target levels. The goal of this function is to facilitate the
-dosing adjustments that are typically conducted in a hospital setting,
-and to allow clinical pharmacists to make patient specific judgements
-quicker.
-
-@param pre_level Patient level taken prior to providing the next dose
-(mg/L) @param post_level Patient level taken after infusion time of dose
-(mg/L) @param dose Amount of drug given to the patient (mg) @param
-regimen Dosing interval currently used for the patient (Q8h, Q12h, Q18h,
-Q24h, Q36h, Q48h) @param infusion_time Time over which the drug is
-infused (h) @param peak_time The time when the post level is drawn (h)
-@param trough_time The time with the pre_level is drawn (h) @param
-peak_conc The ideal peak concentration for the patient (mg/L) @param
-trough_conc The ideal trough concentration for the patient (mg/L)
-
-@return The recommended dosing interval is returned through this
-function @export
-
-<a name="Exercise 1"></a>
-
-Function (Exercise 1)
+Function and Description (Exercise 1 and Exercise 2)
 
 ``` r
+#' @description The function calculates a new dosing regimen for patients receiving Vancomycin using the Sawchuk-Zaske calculation #' strategy. This strategy determines the elimination rate constant(k), the half-life(t1/2), the volume of distribution (Vd), the #' new dosing interval (tau), the new dosing rate recommendation (k0), the expected peak level (C 1h), and the expected trough 
+#' level (C tr). Any relevant equations can be found online or by viewing the equations in the function. Two or three serum 
+#' concentrations are needed, along with the assumption that the patient is at steady-state (receiving their 4th or 5th dose 
+#' depending on the half-life of the drug). Using the patient parameters, individualized dosing regimens can be created to achieve
+#' ideal target levels. The goal of this function is to facilitate the dosing adjustments that are typically conducted in a
+#' hospital setting, and to allow clinical pharmacists to make patient specific judgements quicker. 
+
+#' @param pre_level Patient level taken prior to providing the next dose (mg/L)
+#' @param post_level Patient level taken after infusion time of dose (mg/L)
+#' @param dose Amount of drug given to the patient (mg)
+#' @param regimen Dosing interval currently used for the patient (Q8h, Q12h, Q18h, Q24h, Q36h, Q48h)
+#' @param infusion_time Time over which the drug is infused (h)
+#' @param peak_time The time when the post level is drawn (h)
+#' @param trough_time The time with the pre_level is drawn (h)
+#' @param peak_conc The ideal peak concentration for the patient (mg/L)
+#' @param trough_conc The ideal trough concentration for the patient (mg/L)
+
+#' @return The recommended dosing interval is returned through this function 
+#' @export 
+
+
 Vanco_SS_dose_calculator <- function(pre_level, post_level, dose, regimen, infusion_time, peak_time, trough_time, peak_conc, trough_conc) {
   x <- c(pre_level, post_level, dose, regimen, infusion_time, peak_time, trough_time, peak_conc, trough_conc) # storing inputs
   if(!is.numeric(x)) {
@@ -121,7 +111,10 @@ in a hospital setting.
 
 <a name="Exercise 3"></a>
 
-@examples (Exercise 3) Example dose calculation with patient parameters
+Examples (Exercise 3)
+<p>
+Example dose calculation with patient parameters
+</p>
 
 ``` r
 Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5) # Should be "This function recommends a new dose of", 1500,"given over Q",12,"h",". This will produce a peak of", 33.15,"and a trough value of", 15.2692370301831
@@ -180,7 +173,7 @@ Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1)
 
 <a name="Exercise 4"></a>
 
-@Tests (Exercise 4)
+Tests (Exercise 4)
 
 ``` r
 Vanco_SS_1 <- digest(Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5)) # digesting the Vanco_SS_dose_calculator input
@@ -194,7 +187,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
   }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5) to the digested input
 ```
 
-    ## Test passed 🎉
+    ## Test passed 🥳
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{ 
@@ -202,7 +195,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
   }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) to the digested input
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🎊
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{ 
@@ -210,7 +203,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) to the digested input
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🥇
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{
@@ -218,4 +211,4 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 🎉
