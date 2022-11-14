@@ -76,9 +76,9 @@ Vanco_SS_dose_calculator <- function(pre_level, post_level, dose, regimen, infus
   new_regimen <- (ifelse(new_regimen<10, 8,
                     ifelse(new_regimen<15, 12,
                     ifelse(new_regimen<21, 18, 
-                    ifelse(Cancer$area_mean<30, 24, 
-                    ifelse(Cancer$area_mean<42, 36,
-                    ifelse(Cancer$area_mean<48, 48 ,'Unknown'))))))) # rounding regimen to appropriate time
+                    ifelse(new_regimen<30, 24, 
+                    ifelse(new_regimen<42, 36,
+                    ifelse(new_regimen<48, 48 ,'Unknown'))))))) # rounding regimen to appropriate time
   
   rate_num <- (k*Vd*peak_conc*(1-exp(-k*new_regimen))) # dose rate numerator
   rate_denom <- ((1-exp(-k*infusion_time))*(exp(-k*peak_time))) # dose rate denominator
@@ -187,7 +187,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
   }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5) to the digested input
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🎉
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{ 
@@ -195,7 +195,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
   }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) to the digested input
 ```
 
-    ## Test passed 🎊
+    ## Test passed 🥇
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{ 
@@ -203,7 +203,7 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 }) # expect_equal test comparing the input of Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) to the digested input
 ```
 
-    ## Test passed 🥇
+    ## Test passed 😀
 
 ``` r
 test_that("Testing Vanco_SS_dose_calculator function design",{
@@ -211,4 +211,4 @@ test_that("Testing Vanco_SS_dose_calculator function design",{
 })
 ```
 
-    ## Test passed 🎉
+    ## Test passed 🎊
