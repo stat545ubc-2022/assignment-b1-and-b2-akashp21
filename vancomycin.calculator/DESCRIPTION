@@ -1,6 +1,6 @@
 Package: vancomycin.calculator
-Title: A Steady-State Vancomycin Dose Calculator
-Version: 0.0.0.9000
+Title: Steady-State Vancomycin Dose Calculator
+Version: 0.1.0
 Authors@R: 
     person("Akash", "Panjabi", , "akashp21@student.ubc.ca", role = c("aut", "cre"))
 Description: The function calculates a new dosing regimen for patients receiving Vancomycin using the Sawchuk-Zaske calculation strategy.
@@ -15,3 +15,5 @@ Imports:
     digest,
     dplyr,
     plyr
+Depends: 
+    R (>= 2.10)
