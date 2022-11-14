@@ -29,12 +29,14 @@ You can install the development version of vancomycin.calculator from [GitHub](h
 devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-akashp21/vancomycin.calculator")
 ```
 
-## Example
-
+## Examples
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(vancomycin.calculator)
 ## basic example code
 ```
+
+## Example 1
+
 
