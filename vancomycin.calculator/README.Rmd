@@ -24,7 +24,7 @@ The goal of vancomycin.calculator is to facilitate the dosing adjustments that a
 
 You can install the development version of vancomycin.calculator from [GitHub](https://github.com/) with:
 
-``` r
+``` {r}
 # install.packages("devtools")
 devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-akashp21/vancomycin.calculator")
 ```
