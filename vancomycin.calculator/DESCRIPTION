@@ -11,11 +11,11 @@ RoxygenNote: 7.2.1
 URL: https://github.com/stat545ubc-2022/assignment-b1-and-b2-akashp21/tree/main/vancomycin.calculator
 BugReports: https://github.com/stat545ubc-2022/assignment-b1-and-b2-akashp21/issues
 Suggests: 
+    digest,
+    dplyr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
-    digest,
-    dplyr,
     plyr
 Depends: 
     R (>= 2.10)

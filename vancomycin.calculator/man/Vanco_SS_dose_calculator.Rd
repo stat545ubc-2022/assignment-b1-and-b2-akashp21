@@ -50,8 +50,8 @@ hospital setting, and to allow clinical pharmacists to make patient specific jud
 }
 \examples{
 
-Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5) # Should be "This function recommends a new dose of", 1500,"given over Q",12,"h",". This will produce a peak of", 33.15,"and a trough value of", 15.2692370301831
-Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) # Should be "This function recommends a new dose of", 1500,"given over Q",8,"h",". This will produce a peak of", 33.5,"and a trough value of", 21.5794478677179
-Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) # Should be "This function recommends a new dose of", 1500, 750,"given over Q",8,8,"h",". This will produce a peak of", 33.5, 32.25,"and a trough value of", 21.5794478677179, 16.6211709853472
+Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5) # should be "This function recommends a new dose of 1500 mg given over Q 12 h. This will produce a peak of 33.15 mg and a trough value of 15.2692370301831 mg"
+Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) # should be "This function recommends a new dose of 1500 mg given over Q 8 h. This will produce a peak of 33.5 mg and a trough value of 21.5794478677179 mg"
+Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) # should be "This function recommends a new dose of 1500 750 mg given over Q 8 8 h. This will produce a peak of 33.5 32.25 mg and a trough value of 21.5794478677179 16.6211709853472 mg"
 
 }

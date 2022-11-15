@@ -23,11 +23,10 @@
 #'
 #' @examples
 #'
-#' Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5) # Should be "This function recommends a new dose of", 1500,"given over Q",12,"h",". This will produce a peak of", 33.15,"and a trough value of", 15.2692370301831
-#' Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) # Should be "This function recommends a new dose of", 1500,"given over Q",8,"h",". This will produce a peak of", 33.5,"and a trough value of", 21.5794478677179
-#' Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) # Should be "This function recommends a new dose of", 1500, 750,"given over Q",8,8,"h",". This will produce a peak of", 33.5, 32.25,"and a trough value of", 21.5794478677179, 16.6211709853472
+#' Vanco_SS_dose_calculator(11.0, 22.1, 1000, 12, 1.5, 1.33333, 55/60, 35, 17.5) # should be "This function recommends a new dose of 1500 mg given over Q 12 h. This will produce a peak of 33.15 mg and a trough value of 15.2692370301831 mg"
+#' Vanco_SS_dose_calculator(25.0, 33.5, 1500, 8, 1.5, 115/60, 92/60, 33.5, 17.5) # should be "This function recommends a new dose of 1500 mg given over Q 8 h. This will produce a peak of 33.5 mg and a trough value of 21.5794478677179 mg"
+#' Vanco_SS_dose_calculator(c(25,25), c(33.5, 43.0), c(1500,1000), c(8,8), c(1.5,1), c(115/60,1.5), c(92/60, 1), c(33.5,35), c(17.5:17.5)) # should be "This function recommends a new dose of 1500 750 mg given over Q 8 8 h. This will produce a peak of 33.5 32.25 mg and a trough value of 21.5794478677179 16.6211709853472 mg"
 #'
-
 
 Vanco_SS_dose_calculator <- function(pre_level, post_level, dose, regimen, infusion_time, peak_time, trough_time, peak_conc, trough_conc) {
   x <- c(pre_level, post_level, dose, regimen, infusion_time, peak_time, trough_time, peak_conc, trough_conc) # storing inputs
@@ -70,10 +69,9 @@ Vanco_SS_dose_calculator <- function(pre_level, post_level, dose, regimen, infus
 
   new_peak <- (peak_conc*rounded_dose)/new_dose # calculating new peak level
   new_trough <- new_peak*exp(-k*(new_regimen-(infusion_time+peak_time))) # calculating new trough level
-
-  return(c("This function recommends a new dose of", rounded_dose, "given over Q",
-           new_regimen, "h. This will produce a peak of", new_peak,
-           "and a trough value of", new_trough)) # function return
+  output <-c("This function recommends a new dose of", rounded_dose, "mg", "given over Q", new_regimen, "h. This will produce a peak of",
+             new_peak, "mg","and a trough value of", new_trough, "mg")
+  return(paste(output,collapse=' ')) # function return
 }
 
 
